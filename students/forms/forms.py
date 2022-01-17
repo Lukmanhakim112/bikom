@@ -37,7 +37,7 @@ class StudentProfileForm(forms.ModelForm):
 
     class Meta:
         model = StudentProfile
-        fields = '__all__'
+        exclude = ['account']
 
 class FatherModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -49,7 +49,7 @@ class FatherModelForm(forms.ModelForm):
 
     class Meta:
         model = FatherStudentModels
-        exclude = ['chield']
+        exclude = ['child']
 
 class MotherModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -61,7 +61,7 @@ class MotherModelForm(forms.ModelForm):
 
     class Meta:
         model = MotherStudentModels
-        exclude = ['chield']
+        exclude = ['child']
 
 
 

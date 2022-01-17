@@ -1,0 +1,59 @@
+{% extends 'homepage/base.html' %}
+{% block title %}Login Bikom{% endblock title%}
+{% block navbar %}{% endblock navbar %}
+{% load static %}
+
+{% block main %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+
+	<div class="p-5 my-5 text-center bg-white rounded shadow" style="width: 25rem">
+		<div class="text-start mb-3">
+			<a href="/">
+				<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+				</svg>
+			</a>
+		</div>
+
+		<img src="{% static 'homepage/img/Sekunder.png' %}" class="img-fluid" width="125vh" alt="logo smk telkom bandung">
+		<h3 class="my-3 title">Login Bikom</h3>
+
+		<p class="text-muted">
+			Tidak mempunyai akun? Daftar <a href="{% url 'register' %}">disini.</a>
+		</p>
+
+		<div class="form-label-group">
+			{% if form.errors %}
+				<div class="alert alert-danger text-center" role="alert">
+					Username dan Password tidak valid!
+				</div>
+				<p class="text-muted text-center small m-0">Besar kecil huruf berpengaruh.</p>
+			{% endif %}
+    	</div>
+
+		<form action="" method="POST" id="login-form">
+			{% csrf_token %}
+			<div class="form-floating mb-3">
+				{% if form.username.value %}
+				<input type="text" name="{{ form.username.name }}" value="{{ form.username.value }}" class="form-control" id="inputUsername" placeholder="zakaria" required autofocus>
+				{% else %}
+				<input type="text" name="{{ form.username.name }}" class="form-control" id="inputUsername" placeholder="zakaria" required autofocus>
+				{% endif %}
+				<label for="inputUsername">Username</label>
+			</div>
+			<div class="form-floating">
+				<input type="password" name="{{ form.password.name }}" class="form-control form-control-sm" id="inputPassword" placeholder="Password">
+				<label for="inputPassword">Password</label>
+			</div>
+			<div class="d-grid gap-2 mt-3">
+				<button type="submit" id="login-button" class="btn btn-danger">Login</button>
+			</div>
+		</form>
+	</div>
+
+</div>
+
+{% endblock main %}
+{% block js %}
+	<script src="{% static 'homepage/js/login.js' %}"></script>
+{% endblock js %}

@@ -16,6 +16,7 @@ class BestFriends(models.Model):
 
 
 class StudentProfile(models.Model):
+    account = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True)
     instagram = models.CharField(
         _('Instagram Account'), max_length=35,
         help_text=_("Enter your instagram username with the @, i.e: @ziyk123.")
@@ -39,7 +40,7 @@ class ParentBaseModels(models.Model):
     """
     full_name = FULL_NAME
     jobs = models.CharField(_('Jobs'), max_length=100)
-    chield = models.OneToOneField(StudentProfile, on_delete=models.CASCADE)
+    child = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True

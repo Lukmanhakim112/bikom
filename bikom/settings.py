@@ -130,6 +130,9 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 # Custom user models
 AUTH_USER_MODEL = 'users.CustomUser'
+LOGOUT_REDIRECT_URL = 'homepage'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'student-profile'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

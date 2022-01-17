@@ -25,6 +25,7 @@ STUDENT_REGIS_FORM_LAYOUT = Layout(
 
 STUDENT_PROFILE_FORM_LAYOUT = Layout(
     Row(
+        Div(Field('instagram', css_class='form-control form-control-sm'), css_class='col-12'),
         Div(Field('chield_number', css_class='form-control form-control-sm'), css_class='col-12 col-md-4'),
         Div(Field('number_of_sibling', css_class='form-control form-control-sm'), css_class='col-12 col-md-4'),
         Div(Field('klass', css_class='form-control form-control-sm'), css_class='col-12 col-md-4'),
