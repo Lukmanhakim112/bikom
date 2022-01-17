@@ -1,0 +1,18 @@
+{% extends 'homepage/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block main %}
+<div class="row my-5 bg-white rounded shadow">
+	<div class="col-12 col-md-4 p-3 d-none d-xl-block rounded-start" style="background: #F24949">
+		<div class="p-3 text-center">
+			<h2 class="mb-5 text-white title-register">Curahkan isi Hatimu <br> Disini.</h2>
+			<img class="img-fluid" src="{% static 'homepage/img/welcome_undraw.svg' %}" alt="welcome illustration">
+		</div>
+	</div>
+
+	<div class="col-12 col-md">
+		{% crispy form %}
+	</div>
+</div>
+{% endblock main %}

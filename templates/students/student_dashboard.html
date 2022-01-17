@@ -1,0 +1,108 @@
+{% extends 'homepage/base.html' %} {% block navbar %}{% endblock navbar %}
+{%load static %} {% block main %}
+<div class="row my-5">
+	<!-- profile section -->
+	<section
+		class="col-12 p-5 rounded d-flex justify-content-between"
+		style="background: linear-gradient(to bottom, {{ color }} 50%, white 50%);"
+	>
+		<div class="mt-5 p-1 text-center">
+			<img
+				src="https://avatars.dicebear.com/api/avataaars/{{ user.username }}.svg"
+				class="img-fluid bg-white rounded-circle border border-white"
+				width="120px"
+				alt="photo-profile"
+			/>
+			<h1 class="title">{{ user.username }}</h1>
+			<h5 class="text-muted">XII TKJ-1</h5>
+		</div>
+		<div class="mt-5 p-3 rounded bg-white">
+			<a href="{% url 'student-profile' %}" class="btn btn-primary"
+				>Edit profile</a
+			>
+			<a href="#" class="btn btn-primary">Isi assesment</a>
+		</div>
+	</section>
+
+	<!-- schedule section -->
+	<section class="col-12 my-4 p-3">
+		<h3 class="title">Jadwal konseling yang akan datang</h3>
+		<p class="text-muted title">
+			Jangan sampai lupa dengan bimbingan selanjutnya...
+		</p>
+
+		<div class="d-flex">
+			<div
+				class="bg-white rounded p-3 me-3 border-start border-5 border-warning rounded bg-white"
+			>
+				<span class="text-muted">Senin, 12 Okt. 10.00 - 12.00</span>
+				<h6 class="title"><b>Bimbingan dengan Sasd</b></h6>
+			</div>
+
+			<!-- Add schedule button -->
+			<div
+				class="bg-white rounded p-3 me-3 border-start border-5 border-primary rounded bg-white d-flex flex-column justify-content-center align-items-center"
+			>
+				<a href="">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="32"
+						height="32"
+						fill="currentColor"
+						class="bi bi-plus-square"
+						viewBox="0 0 16 16"
+					>
+						<path
+							d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+						/>
+						<path
+							d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+						/>
+					</svg>
+				</a>
+				<div class="mt-1">Tambah jadwal</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Best friend section -->
+	<section class="col-12 p-3">
+		<h3 class="title">Teman dekat kamu</h3>
+		<p class="text-muted">
+			Beberapa temen dekat kamu, yang selalu hadir disaat kamu butuh
+			mereka...
+		</p>
+
+		<!-- <div class="d-flex"> -->
+		<!--     <div class="p-3 border-start border-5 border-danger rounded bg-white"> -->
+		<!--         Ariana Grandae <br> -->
+		<!--         <span class="text-muted">088234234898</span> -->
+		<!--     </div> -->
+		<!-- </div> -->
+		<div
+			class="bg-white rounded d-flex flex-column justify-content-center align-items-center"
+			style="height: 15vh"
+		>
+			<a href="">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="60px"
+					height="60px"
+					fill="currentColor"
+					class="bi bi-person-plus"
+					viewBox="0 0 16 16"
+				>
+					<path
+						d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+					/>
+					<path
+						fill-rule="evenodd"
+						d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+					/>
+				</svg>
+			</a>
+			<div class="mt-1">Tambah teman dekat</div>
+		</div>
+	</section>
+</div>
+{% endblock main %}

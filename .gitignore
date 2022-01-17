@@ -25,6 +25,7 @@ media
 *.so
 
 NOTE.txt
+color_pallete.png
 
 # Distribution / packaging
 .Python

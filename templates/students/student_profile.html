@@ -1,0 +1,47 @@
+{% extends 'homepage/base.html' %} {% block navbar %}{% endblock navbar %} 
+{% load static %} {% load crispy_forms_tags %} 
+
+{% block main %}
+<div class="row my-5">
+	<div class="col p-3 text-center d-flex flex-column justify-content-center align-items-center">
+		<h3 class="title">Data pribadi</h3>
+		<p class="text-muted my-3">
+			Silahkan isi data pribadi kamu, supaya kami dapat memahami Anda lebih baik...
+		</p>
+		<img src="{% static 'students/img/undraw_forms_re_pkrt.svg' %}" class="img-fluid" alt="form-illustration">
+	</div>
+	<div class="col-8">
+		<form action="" method="POST">
+			{% csrf_token %}
+
+			<!-- Profile form -->
+			<div class="card">
+				<div class="card-header">Data diri</div>
+				<div class="card-body">
+					{% crispy form %}
+				</div>
+			</div>
+
+			<!-- Father form -->
+			<div class="card my-3">
+				<div class="card-header">Profile Ayah</div>
+				<div class="card-body">
+					{% crispy f_form %}
+				</div>
+			</div>
+
+			<!-- Mother form -->
+			<div class="card">
+				<div class="card-header">Profile Ibu</div>
+				<div class="card-body">
+					{% crispy m_form %}
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-danger mt-3">Simpan Data</button>
+			<a class="btn btn-outline-secondary mt-3" href="{% url 'student-dashboard' %}">Kembali</a>
+
+		</form>
+	</div>
+</div>
+{% endblock main %}

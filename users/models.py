@@ -73,21 +73,21 @@ class CustomUser(AbstractUser):
     )
 
     full_name = models.CharField(
-        _('Full Name'),
+        _('Full name'),
         max_length=120,
     )
-    nick_name = models.CharField(
-        _('Nick Name'),
-        max_length=100,
-        help_text=_('Enter your nickname, to show in the app.')
+    phone_number = models.CharField(
+        _('Phone number'),
+        max_length=14,
+        null=True
     )
     photo = models.ImageField(
-        _('Photo Profile'),
+        _('Photo profile'),
         help_text=_('Please enter your beautiful photo, free to pose, but use decent clothing.')
     )
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['full_name', 'nick_name', 'photo', 'password']
+    REQUIRED_FIELDS = ['full_name', 'phone_number', 'photo', 'password']
 
     objects = CustomUserManager()
 

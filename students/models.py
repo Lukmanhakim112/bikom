@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-
+from users.models import CustomUser
 
 
 FULL_NAME = models.CharField(_('Full Name'), max_length=100)
 
 class BestFriends(models.Model):
+    friend = models.ManyToManyField(CustomUser)
     full_name = FULL_NAME
     phone_number = models.CharField(_('Phone Number'), max_length=15)
 
@@ -28,9 +29,8 @@ class StudentProfile(models.Model):
     # klass == class
     klass = models.CharField(
         _('Class'), max_length=13,
-        help_text=_('Enter your class name, i.e: XII TJAT-2. HARUS tulis seperti contoh.')
+        help_text=_('Enter your class name, i.e: XII TJAT-2. MUST write as example.')
     )
-    friend = models.ManyToManyField(BestFriends, verbose_name=_('Best Friends'))
 
 class ParentBaseModels(models.Model):
     """
