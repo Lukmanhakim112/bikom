@@ -32,6 +32,13 @@ STUDENT_PROFILE_FORM_LAYOUT = Layout(
     )
 )
 
+BEST_FRIEND_FORM_LAYOUT = Layout(
+    Row(
+        Div(Field('full_name', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+        Div(Field('phone_number', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+    )
+)
+
 def parent_form_layout(parent: str):
     layout = Layout(
         Row(

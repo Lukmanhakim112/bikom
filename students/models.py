@@ -6,10 +6,10 @@ from users.models import CustomUser
 
 FULL_NAME = models.CharField(_('Full Name'), max_length=100)
 
-class BestFriends(models.Model):
+class BestFriendsModel(models.Model):
     friend = models.ManyToManyField(CustomUser)
     full_name = FULL_NAME
-    phone_number = models.CharField(_('Phone Number'), max_length=15)
+    phone_number = models.CharField(_('Phone Number'), max_length=15, unique=True)
 
     def __str__(self):
         return self.full_name

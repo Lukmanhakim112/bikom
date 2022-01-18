@@ -1,18 +1,34 @@
-{% extends 'homepage/base.html' %} {% block navbar %}{% endblock navbar %}
+{% extends 'homepage/base.html' %} 
 {%load static %} 
+{% load crispy_forms_tags %} 
+
+{% block messages %}{% endblock messages %}
+{% block navbar %}{% endblock navbar %} 
+
 {% block header %}
 <style>
-#photo-profile {
-	display: block;
-	width: 120px;
-	height: 120px;
-}
-
+	#photo-profile {
+		display: block;
+		width: 120px;
+		height: 120px;
+	}
 </style>
-{% endblock header %}
+{% endblock header %} 
 
 {% block main %}
 <div class="row my-5">
+
+		{% if messages %}
+			<!-- messages section -->
+			<section class="bg-white m-3 p-3 rounded shadow">
+				{% for m in messages%}
+					<div class="m-0 alert alert-{{ m.tags }}" role="alert">
+						{{m}}
+					</div>
+				{% endfor%}
+			</section>
+		{% endif %}
+
 	<!-- profile section -->
 	<section
 		class="col-12 p-5 rounded d-flex justify-content-between"
@@ -85,17 +101,44 @@
 			mereka...
 		</p>
 
-		<!-- <div class="d-flex"> -->
-		<!--     <div class="p-3 border-start border-5 border-danger rounded bg-white"> -->
-		<!--         Ariana Grandae <br> -->
-		<!--         <span class="text-muted">088234234898</span> -->
-		<!--     </div> -->
-		<!-- </div> -->
+		{% if friends %}
+		<div class="d-flex">
+			{% for f in friends %}
+			<div class="p-3 me-3 border-start border-5 border-danger rounded bg-white">
+				{{ f.full_name }} <br>
+				<span class="text-muted">{{ f.phone_number }}</span>
+			</div>
+			{% endfor %}
+			<div
+				class="bg-white rounded p-3 me-3 border-start border-5 border-primary rounded bg-white d-flex flex-column justify-content-center align-items-center"
+			>
+				<a href="">
+					<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="32"
+					height="32"
+					fill="currentColor"
+					class="bi bi-person-plus"
+					viewBox="0 0 16 16"
+					>
+						<path
+							d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+						/>
+						<path
+							fill-rule="evenodd"
+							d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+						/>
+					</svg>
+				</a>
+				<div class="mt-1">Tambah teman dekat</div>
+			</div>
+		</div>
+		{% else %}
 		<div
 			class="bg-white rounded d-flex flex-column justify-content-center align-items-center"
 			style="height: 15vh"
 		>
-			<a href="">
+			<a href="" data-bs-toggle="modal" data-bs-target="#bestFriendModal">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="60px"
@@ -115,6 +158,47 @@
 			</a>
 			<div class="mt-1">Tambah teman dekat</div>
 		</div>
+		{% endif %}
 	</section>
+
+	<!-- Best Friend Form Modal -->
+	<div
+		class="modal fade"
+		id="bestFriendModal"
+		tabindex="-1"
+		aria-labelledby="bestFriendModalLabel"
+		aria-hidden="true"
+	>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="bestFriendModalLabel">
+						Tambah Teman Dekat
+					</h5>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body">
+					{% crispy f_friend %}
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-outline-secondary"
+						data-bs-dismiss="modal"
+					>
+						Batal
+					</button>
+					<button type="submit" form="bestFriendForm" class="btn btn-primary">
+						Tambahkan teman dekat
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock main %}

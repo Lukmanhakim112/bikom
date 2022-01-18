@@ -109,7 +109,22 @@
 		{% endblock navbar %}
 
 		<main>
-			<div class="container">{% block main %}{% endblock main %}</div>
+			<div class="container">
+
+				{% block messages %}
+					{% if messages %}
+						<div class="bg-white m-3 p-3 rounded shadow">
+							{% for m in messages%}
+								<div class="m-0 alert alert-{{ m.tags }}" role="alert">
+									{{m}}
+								</div>
+							{% endfor%}
+						</div>
+					{% endif %}
+                {% endblock messages %}
+
+				{% block main %}{% endblock main %}
+			</div>
 		</main>
 
 		<script

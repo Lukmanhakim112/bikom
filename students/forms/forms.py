@@ -1,4 +1,5 @@
 from django import forms
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 
 from crispy_forms.helper import FormHelper
@@ -7,8 +8,12 @@ from .forms_layout import (
     STUDENT_REGIS_FORM_LAYOUT,
     STUDENT_PROFILE_FORM_LAYOUT,
     parent_form_layout,
+    BEST_FRIEND_FORM_LAYOUT,
 )
-from students.models import StudentProfile, FatherStudentModels, MotherStudentModels
+from students.models import (
+    StudentProfile, FatherStudentModels,
+    MotherStudentModels, BestFriendsModel
+)
 
 from users.models import CustomUser
 
@@ -62,6 +67,18 @@ class MotherModelForm(forms.ModelForm):
     class Meta:
         model = MotherStudentModels
         exclude = ['child']
+
+class BestFriendsModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = BEST_FRIEND_FORM_LAYOUT
+        self.helper.form_id = "bestFriendForm"
+        self.helper.form_action = reverse_lazy('student-best-save')
+
+    class Meta:
+        model = BestFriendsModel
+        exclude = ['friend']
 
 
 
