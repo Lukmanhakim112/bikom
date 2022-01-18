@@ -6,7 +6,7 @@ from crispy_forms.helper import FormHelper
 from .forms_layout import (
     STUDENT_REGIS_FORM_LAYOUT,
     STUDENT_PROFILE_FORM_LAYOUT,
-    PARENT_STUDENT_FORM_LAYOUT,
+    parent_form_layout,
 )
 from students.models import StudentProfile, FatherStudentModels, MotherStudentModels
 
@@ -43,7 +43,7 @@ class FatherModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.layout = PARENT_STUDENT_FORM_LAYOUT
+        self.helper.layout = parent_form_layout("father")
         self.helper.form_tag = False
         self.helper.disable_csrf = True
 
@@ -55,7 +55,7 @@ class MotherModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.layout = PARENT_STUDENT_FORM_LAYOUT
+        self.helper.layout = parent_form_layout("mother")
         self.helper.form_tag = False
         self.helper.disable_csrf = True
 

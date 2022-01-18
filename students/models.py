@@ -33,31 +33,18 @@ class StudentProfile(models.Model):
         help_text=_('Enter your class name, i.e: XII TJAT-2. MUST write as example.')
     )
 
-class ParentBaseModels(models.Model):
-    """
-    Create blueprint for both Father and Mother models,
-    https://docs.djangoproject.com/en/3.2/topics/db/models/#abstract-base-classes
-    """
-    full_name = FULL_NAME
-    jobs = models.CharField(_('Jobs'), max_length=100)
+class FatherStudentModels(models.Model):
+    father_full_name = models.CharField(_('Full Name'), max_length=100)
+    father_jobs = models.CharField(_('Jobs'), max_length=100)
     child = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
-    class Meta:
-        abstract = True
+    def __str__(self):
+        return self.father_full_name
+
+class MotherStudentModels(models.Model):
+    mother_full_name = models.CharField(_('Full Name'), max_length=100)
+    mother_jobs = models.CharField(_('Jobs'), max_length=100)
+    child = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.full_name
-
-
-class FatherStudentModels(ParentBaseModels):
-    """
-    The actual models that being used
-    """
-    pass
-
-class MotherStudentModels(ParentBaseModels):
-    """
-    The actual models that being used
-    """
-    pass
-
+        return self.mother_full_name

@@ -1,5 +1,17 @@
 {% extends 'homepage/base.html' %} {% block navbar %}{% endblock navbar %}
-{%load static %} {% block main %}
+{%load static %} 
+{% block header %}
+<style>
+#photo-profile {
+	display: block;
+	width: 120px;
+	height: 120px;
+}
+
+</style>
+{% endblock header %}
+
+{% block main %}
 <div class="row my-5">
 	<!-- profile section -->
 	<section
@@ -8,13 +20,13 @@
 	>
 		<div class="mt-5 p-1 text-center">
 			<img
-				src="https://avatars.dicebear.com/api/avataaars/{{ user.username }}.svg"
+				src="{{ user.photo.url }}"
 				class="img-fluid bg-white rounded-circle border border-white"
-				width="120px"
 				alt="photo-profile"
+				id="photo-profile"
 			/>
 			<h1 class="title">{{ user.username }}</h1>
-			<h5 class="text-muted">XII TKJ-1</h5>
+			<h5 class="text-muted">{{ s_profile.klass|upper }}</h5>
 		</div>
 		<div class="mt-5 p-3 rounded bg-white">
 			<a href="{% url 'student-profile' %}" class="btn btn-primary"

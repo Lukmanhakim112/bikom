@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 
 from students.forms.forms import StudentProfileForm, FatherModelForm, MotherModelForm
 from students.models import StudentProfile, FatherStudentModels, MotherStudentModels
@@ -15,12 +16,13 @@ def student_dashboard(request):
 
     try:
         s_profile = StudentProfile.objects.get(account=request.user) 
-    except StudentProfile.DoesNotExist:
+    except ObjectDoesNotExist:
         return redirect('student-profile')
 
     color = "#"+"".join([random.choice('0123456789ABCDEF') for _ in range(6)])
     ctx = {
         "color": color,
+        "s_profile": s_profile,
     }
 
     return render(request, 'students/student_dashboard.html', ctx)
@@ -29,29 +31,40 @@ def student_dashboard(request):
 def student_profile(request):
     try:
         profile = StudentProfile.objects.get(account=request.user.pk)
-        father = FatherStudentModels.objects.get(child=request.user.pk)
-        mother = MotherStudentModels.objects.get(child=request.user.pk)
-    except (StudentProfile.DoesNotExist, FatherModelForm.DoesNotExist, MotherModelForm.DoesNotExist):
+    except ObjectDoesNotExist:
         profile = None
+
+    try:
+        father = FatherStudentModels.objects.get(child=request.user.pk)
+    except ObjectDoesNotExist:
         father = None
+
+    try:
+        mother = MotherStudentModels.objects.get(child=request.user.pk)
+    except ObjectDoesNotExist:
         mother = None
 
-    p_form = StudentProfileForm(request.POST or None, instance=profile)
-    f_form = FatherModelForm(request.POST or None, instance=father)
-    m_form = MotherModelForm(request.POST or None, instance=mother)
+    p_form = StudentProfileForm(instance=profile)
+    f_form = FatherModelForm(instance=father)
+    m_form = MotherModelForm(instance=mother)
 
-    if p_form.is_valid() and f_form.is_valid() and m_form.is_valid():
-        account = CustomUser.objects.get(pk=request.user.pk)
+    if request.method == 'POST':
+        p_form = StudentProfileForm(request.POST or None, instance=profile)
+        f_form = FatherModelForm(request.POST or None, instance=father)
+        m_form = MotherModelForm(request.POST or None, instance=mother)
 
-        p_form.instance.account = account
-        m_form.instance.child = account
-        f_form.instance.child = account
+        if p_form.is_valid() and f_form.is_valid() and m_form.is_valid():
+            account = CustomUser.objects.get(pk=request.user.pk)
 
-        p_form.save()
-        m_form.save()
-        f_form.save()
+            p_form.instance.account = account
+            m_form.instance.child = account
+            f_form.instance.child = account
 
-        return redirect('student-dashboard')
+            p_form.save()
+            m_form.save()
+            f_form.save()
+
+            return redirect('student-dashboard')
 
     ctx = {
         "form": p_form,

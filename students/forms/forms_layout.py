@@ -32,9 +32,13 @@ STUDENT_PROFILE_FORM_LAYOUT = Layout(
     )
 )
 
-PARENT_STUDENT_FORM_LAYOUT = Layout(
-    Row(
-        Div(Field('full_name', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
-        Div(Field('jobs', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+def parent_form_layout(parent: str):
+    layout = Layout(
+        Row(
+            Div(Field(f'{parent}_full_name', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+            Div(Field(f'{parent}_jobs', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+        )
     )
-)
+
+    return layout
+

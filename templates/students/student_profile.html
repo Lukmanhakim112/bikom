@@ -11,7 +11,7 @@
 		<img src="{% static 'students/img/undraw_forms_re_pkrt.svg' %}" class="img-fluid" alt="form-illustration">
 	</div>
 	<div class="col-8">
-		<form action="" method="POST">
+		<form action="{% url 'student-profile' %}" method="POST">
 			{% csrf_token %}
 
 			<!-- Profile form -->
