@@ -3,20 +3,24 @@ import random
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 from students.forms.forms import (
     StudentProfileForm, FatherModelForm, 
-    MotherModelForm, BestFriendsModelForm
+    MotherModelForm, BestFriendsModelForm,
+    AppointmentModelForm
 )
 from students.models import (
-    StudentProfile, FatherStudentModels,
+    AppointmentSchedule, StudentProfile, FatherStudentModels,
     MotherStudentModels, BestFriendsModel
 )
 
 from users.models import CustomUser
 
 
+@login_required()
 def student_dashboard(request):
+
     # TODO: redirect to staff dashboard
     if request.user.is_staff:
         pass
@@ -31,17 +35,22 @@ def student_dashboard(request):
     f_friend = BestFriendsModelForm()
     friends = BestFriendsModel.objects.filter(friend=request.user.pk)
 
+    appointments = AppointmentSchedule.objects.filter(student=request.user.pk)
+
 
     ctx = {
         "color": color,
         "s_profile": s_profile,
         "f_friend": f_friend,
         "friends": friends,
+        "appointments": appointments,
+        "a_form": AppointmentModelForm(),
     }
 
     return render(request, 'students/student_dashboard.html', ctx)
 
 
+@login_required()
 def student_profile(request):
     try:
         profile = StudentProfile.objects.get(account=request.user.pk)
@@ -89,6 +98,7 @@ def student_profile(request):
     return render(request, 'students/student_profile.html', ctx)
 
 
+@login_required()
 def student_best_friends(request):
 
     # Only accept POST method
@@ -113,5 +123,26 @@ def student_best_friends(request):
 
     messages.warning(request, 'Data yang diinputkan tidak valid.')
     return redirect('student-dashboard')
+
+@login_required()
+def student_appointment(request):
+
+    # Only accept POST method
+    if request.method != "POST":
+        return redirect('student-dashboard')
+
+    form = AppointmentModelForm(request.POST)
+
+    if form.is_valid():
+        form.instance.student = request.user
+        form.save()
+
+        messages.success(request, 'Jadwal bimbingan berhasil disimpan, menunggu persetujuan guru BK.')
+        return redirect('student-dashboard')
+
+    messages.warning(request, 'Data yang diinputkan tidak valid.')
+    return redirect('student-dashboard')
+
+
 
 

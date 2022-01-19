@@ -14,6 +14,38 @@ class BestFriendsModel(models.Model):
     def __str__(self):
         return self.full_name
 
+class AppointmentSchedule(models.Model):
+    teacher = models.ForeignKey(
+        CustomUser,
+        on_delete=models.DO_NOTHING,
+        related_name="staff_teacher",
+        limit_choices_to={'is_staff': True},
+        null=True,
+    )
+    student = models.ForeignKey(
+        CustomUser,
+        on_delete=models.DO_NOTHING
+    )
+    approved = models.BooleanField(
+        _("Approval"),
+        null=True,
+    )
+    date = models.DateField(
+        _("Appointment date"),
+        help_text=_("Enter what date for when you want meet the teacher."),
+    )
+    time = models.TimeField(
+        _("Appointment time at"),
+        help_text=_("Enter what time for when you want meet the teacher."),
+    )
+    desc = models.TextField(
+        verbose_name=_("Description"),
+        help_text=_("Describe why you make an appointment."),
+        null=True,
+    )
+
+    def __str__(self):
+        return f"{self.student} appointment"
 
 class StudentProfile(models.Model):
     account = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True)
@@ -32,6 +64,9 @@ class StudentProfile(models.Model):
         _('Class'), max_length=13,
         help_text=_('Enter your class name, i.e: XII TJAT-2. MUST write as example.')
     )
+
+    def __str__(self):
+        return f"{self.account} profile"
 
 class FatherStudentModels(models.Model):
     father_full_name = models.CharField(_('Full Name'), max_length=100)

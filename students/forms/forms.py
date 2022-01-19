@@ -9,10 +9,12 @@ from .forms_layout import (
     STUDENT_PROFILE_FORM_LAYOUT,
     parent_form_layout,
     BEST_FRIEND_FORM_LAYOUT,
+    APPOINTMENT_FORM_LAYOUT,
 )
 from students.models import (
     StudentProfile, FatherStudentModels,
-    MotherStudentModels, BestFriendsModel
+    MotherStudentModels, BestFriendsModel,
+    AppointmentSchedule,
 )
 
 from users.models import CustomUser
@@ -30,7 +32,6 @@ class StudentRegisForm(UserCreationForm):
             'username', 'full_name', 'phone_number',
             'photo', 'password1', 'password2'
         ]
-
 
 class StudentProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -79,6 +80,18 @@ class BestFriendsModelForm(forms.ModelForm):
     class Meta:
         model = BestFriendsModel
         exclude = ['friend']
+
+class AppointmentModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = APPOINTMENT_FORM_LAYOUT
+        self.helper.form_id = "appointmentForm"
+        self.helper.form_action = reverse_lazy('student-appointment-save')
+
+    class Meta:
+        model = AppointmentSchedule
+        exclude = ['student', 'approved']
 
 
 

@@ -39,7 +39,16 @@ BEST_FRIEND_FORM_LAYOUT = Layout(
     )
 )
 
-def parent_form_layout(parent: str):
+APPOINTMENT_FORM_LAYOUT = Layout(
+    Row(
+        Div(Field('teacher', css_class='form-control form-control-sm'), css_class='col-12'),
+        Div(Field('date', css_class='form-control form-control-sm'), css_class='col-12'),
+        Div(Field('time', css_class='form-control form-control-sm'), css_class='col-12'),
+        Div(Field('desc', css_class='form-control form-control-sm'), css_class='col-12'),
+    )
+)
+
+def parent_form_layout(parent: str) -> Layout:
     layout = Layout(
         Row(
             Div(Field(f'{parent}_full_name', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),

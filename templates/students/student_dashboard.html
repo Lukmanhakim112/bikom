@@ -5,12 +5,15 @@
 {% block messages %}{% endblock messages %}
 {% block navbar %}{% endblock navbar %} 
 
+{% block title %}Dashboard Siswa{% endblock title %}
+
 {% block header %}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	#photo-profile {
 		display: block;
-		width: 120px;
-		height: 120px;
+		width: 7.5rem;
+		height: 7.5rem;
 	}
 </style>
 {% endblock header %} 
@@ -20,9 +23,9 @@
 
 		{% if messages %}
 			<!-- messages section -->
-			<section class="bg-white m-3 p-3 rounded shadow">
+			<section class="bg-white my-3 p-3 rounded shadow-sm">
 				{% for m in messages%}
-					<div class="m-0 alert alert-{{ m.tags }}" role="alert">
+					<div class="m-0 border-0 alert alert-{{ m.tags }}" role="alert">
 						{{m}}
 					</div>
 				{% endfor%}
@@ -59,19 +62,28 @@
 			Jangan sampai lupa dengan bimbingan selanjutnya...
 		</p>
 
+		{% if appointments %}
 		<div class="d-flex">
+
+			{% for a in appointments %}
 			<div
 				class="bg-white rounded p-3 me-3 border-start border-5 border-warning rounded bg-white"
 			>
-				<span class="text-muted">Senin, 12 Okt. 10.00 - 12.00</span>
-				<h6 class="title"><b>Bimbingan dengan Sasd</b></h6>
+				<span class="text-muted">{{ a.date|date:"l, d F" }}. Pukul: {{ a.time }}</span>
+				<h6 class="title"><b>Bimbingan dengan {{ a.teacher }}</b></h6>
+				{% if a.approved %}
+				<span class="badge bg-success">Disetujui</span>
+				{% else %}
+				<span class="badge bg-secondary">Pending</span>
+				{% endif %}
 			</div>
+			{% endfor %}
 
 			<!-- Add schedule button -->
 			<div
 				class="bg-white rounded p-3 me-3 border-start border-5 border-primary rounded bg-white d-flex flex-column justify-content-center align-items-center"
 			>
-				<a href="">
+				<a href="#" data-bs-toggle="modal" data-bs-target="#appointmentCreationModal">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="32"
@@ -91,6 +103,31 @@
 				<div class="mt-1">Tambah jadwal</div>
 			</div>
 		</div>
+		{% else %}
+		<div
+			class="bg-white rounded d-flex flex-column justify-content-center align-items-center"
+			style="height: 15vh"
+		>
+			<a href="" data-bs-toggle="modal" data-bs-target="#appointmentCreationModal">
+				<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="3rem"
+						height="3rem"
+						fill="currentColor"
+						class="bi bi-plus-square"
+						viewBox="0 0 16 16"
+					>
+						<path
+							d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+						/>
+						<path
+							d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+						/>
+					</svg>
+			</a>
+			<div class="mt-1">Tambah jadwal konseling</div>
+		</div>
+		{% endif %}
 	</section>
 
 	<!-- Best friend section -->
@@ -112,7 +149,7 @@
 			<div
 				class="bg-white rounded p-3 me-3 border-start border-5 border-primary rounded bg-white d-flex flex-column justify-content-center align-items-center"
 			>
-				<a href="">
+				<a href="#" data-bs-toggle="modal" data-bs-target="#bestFriendModal">
 					<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="32"
@@ -138,7 +175,7 @@
 			class="bg-white rounded d-flex flex-column justify-content-center align-items-center"
 			style="height: 15vh"
 		>
-			<a href="" data-bs-toggle="modal" data-bs-target="#bestFriendModal">
+			<a href="#" data-bs-toggle="modal" data-bs-target="#bestFriendModal">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="60px"
@@ -200,5 +237,51 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Appointment Form Modal -->
+	<div
+		class="modal fade"
+		id="appointmentCreationModal"
+		tabindex="-1"
+		aria-labelledby="appointmentModelLabel"
+		aria-hidden="true"
+	>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="appointmentModelLabel">
+						Tambah Jadwal Konseling
+					</h5>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body">
+					{% crispy a_form %}
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-outline-secondary"
+						data-bs-dismiss="modal"
+					>
+						Batal
+					</button>
+					<button type="submit" form="appointmentForm" class="btn btn-primary">
+						Tambahkan jadwal konseling
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 {% endblock main %}
+{% block js %}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<script type="text/javascript" src="{% static 'students/js/datepicker.js' %}"></script>
+{% endblock js %}
