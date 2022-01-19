@@ -5,8 +5,9 @@ to consult something (or anything really...) to their "BK (Bimbingan Konseling)"
 
 TODO
 - [x] Basic CRUD to the profile of the student (ongoin)
+- [x] Student can make an appointment
 - [ ] Teacher can issue and assignment (survey)
-- [ ] Student can make an appointment
+- [ ] Teacher can and should approve an appointment
 - [ ] Notification system (idk, it's gonna realtime or not...)
 
 ## Quick Start
