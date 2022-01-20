@@ -4,11 +4,12 @@ Bikom is stand for "Bimbingan Konseling Telkom Bandung" in Indonesian. This web 
 to consult something (or anything really...) to their "BK (Bimbingan Konseling)" teacher. 
 
 TODO
-- [x] Basic CRUD to the profile of the student (ongoin)
-- [x] Student can make an appointment
+- [x] Basic CRUD to the profile of the student
+- [x] Student can make an appointment (and teacher must approve it)
+- [ ] Make dashboard for admin and teacher
 - [ ] Teacher can issue and assignment (survey)
 - [ ] Teacher can and should approve an appointment
-- [ ] Notification system (idk, it's gonna realtime or not...)
+- [ ] Notification system (idk, it's might be change)
 
 ## Quick Start
 
@@ -28,20 +29,20 @@ $ python manage.py runserver
 
 ### Windows
 ```console
-$ git clone https://github.com/Lukmanhakim112/bikom
-$ cd bikom
-$ py -m venv venv
+> git clone https://github.com/Lukmanhakim112/bikom
+> cd bikom
+> py -m venv venv
 
 for cmd:
-$ venv\Scripts\activate.bat
+> venv\Scripts\activate.bat
 
 for powershell:
-$ venv\Scripts\Activate.ps1
+> venv\Scripts\Activate.ps1
 
-$ pip install -r requirements.txt
-$ py manage.py migrate
-$ py manage.py compilemessages
-$ py manage.py runserver
+> pip install -r requirements.txt
+> py manage.py migrate
+> py manage.py compilemessages
+> py manage.py runserver
 ```
 If the server is running, that mean you install it successfully.
 
