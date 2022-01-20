@@ -2,6 +2,10 @@
 
 {% load crispy_forms_tags %}
 
+{% block navbar-dashboard %}
+	<a href="{% url 'users-list' %}" class="btn text-danger">Daftar Akun</a>
+	<a href="{% url 'create-teacher' %}" class="btn text-danger">Tambah Akun</a>
+{% endblock navbar-dashboard %}
 
 {% block main-dashboard %}
 <section class="p-3 bg-white rounded">

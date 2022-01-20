@@ -12,6 +12,7 @@ TODO
 - [ ] Notification system (idk, it's might be change)
 
 - [ ] write test files
+- [ ] more concise translation throught the project
 
 ## Quick Start
 

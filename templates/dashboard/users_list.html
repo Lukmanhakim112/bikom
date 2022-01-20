@@ -1,0 +1,97 @@
+{% extends 'dashboard/base_dashboard.html' %} 
+
+{% block navbar-dashboard %}
+	<a href="{% url 'users-list' %}" class="btn text-danger">Daftar Akun</a>
+	<a href="{% url 'create-teacher' %}" class="btn text-danger">Tambah Akun</a>
+{% endblock navbar-dashboard %}
+
+{% block main-dashboard %}
+<section class="p-3 bg-white rounded">
+
+	<h2 class="title">Daftar Akun</h2>
+	<p class="text-muted">
+		Berikut adalah daftar akun yang mendaftar di website ini.
+	</p>
+
+	<ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="pills-user-staff-tab" data-bs-toggle="pill" data-bs-target="#pills-user-staff" type="button" role="tab" aria-controls="pills-user-staff" aria-selected="true">Akun Staff</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="pills-student-tab" data-bs-toggle="pill" data-bs-target="#pills-student" type="button" role="tab" aria-controls="pills-student" aria-selected="false">Akun Murid</button>
+		</li>
+	</ul>
+	<div class="tab-content" id="pills-tabContent">
+
+		<div class="tab-pane fade show active" id="pills-user-staff" role="tabpanel" aria-labelledby="pills-user-staff-tab">
+			<table class="table">
+			  <thead>
+				<tr>
+				  <th scope="col">#</th>
+				  <th scope="col">Username</th>
+				  <th scope="col">Nomor HP</th>
+				  <th scope="col">Action</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				{% for staff in staff_user %}
+					<tr>
+						<th scope="row">{{ forloop.counter }}</th>
+						<td>{{ staff.username }}</td>
+						<td>{{ staff.phone_number }}</td>
+						<td>
+							<div class="dropdown">
+							  <button class="btn" type="button" id="actionButton{{ forloop.counter }}" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-three-dots-vertical"></i>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="actionButton{{ forloop.counter }}">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							  </ul>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			  </tbody>
+			</table>
+		</div>
+
+		<div class="tab-pane fade" id="pills-student" role="tabpanel" aria-labelledby="pills-student-tab">
+			<table class="table">
+			  <thead>
+				<tr>
+				  <th scope="col">#</th>
+				  <th scope="col">Username</th>
+				  <th scope="col">Nomor HP</th>
+				  <th scope="col">Action</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				{% for student in student_user %}
+					<tr>
+						<th scope="row">{{ forloop.counter }}</th>
+						<td>{{ student.username }}</td>
+						<td>{{ student.phone_number }}</td>
+						<td>
+							<div class="dropdown">
+							  <button class="btn" type="button" id="studentActionButton{{ forloop.counter }}" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-three-dots-vertical"></i>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="studentActionButton{{ forloop.counter }}">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							  </ul>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			  </tbody>
+			</table>
+		</div>
+	</div>
+
+
+</section>
+{% endblock main-dashboard %}
