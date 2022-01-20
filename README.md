@@ -15,7 +15,7 @@ TODO
 
 ## Quick Start
 
-Make sure python is installed and can be accessed via terminal or cmd or powershell.
+Make sure <strong>python 3.7</strong> or newer is installed and can be accessed via terminal or cmd or powershell.
 
 ### Linux/Unix
 ```console
