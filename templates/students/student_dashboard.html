@@ -71,11 +71,13 @@
 			>
 				<span class="text-muted">{{ a.date|date:"l, d F" }}. Pukul: {{ a.time }}</span>
 				<h6 class="title"><b>Bimbingan dengan {{ a.teacher }}</b></h6>
-				{% if a.approved %}
-				<span class="badge bg-success">Disetujui</span>
-				{% else %}
-				<span class="badge bg-secondary">Pending</span>
-				{% endif %}
+					{% if a.approved %}
+					<span class="badge bg-success">Diterima</span>
+					{% elif a.approved == None %}
+					<span class="badge bg-secondary">Pending</span>
+					{% else %}
+					<span class="badge bg-danger">Ditolak</span>
+					{% endif %}
 			</div>
 			{% endfor %}
 

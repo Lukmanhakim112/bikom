@@ -10,7 +10,6 @@ TODO
 - [ ] Teacher can issue and assignment (survey)
 - [ ] Teacher can and should approve an appointment
 - [ ] Notification system (idk, it's might be change)
-
 - [ ] write test files
 - [ ] more concise translation throught the project
 
@@ -22,7 +21,7 @@ Make sure python is installed and can be accessed via terminal or cmd or powersh
 ```console
 $ git clone https://github.com/Lukmanhakim112/bikom
 $ cd bikom
-$ mv bikom/.env.example /bikom/.env
+$ mv bikom/.env.example bikom/.env
 $ python -m venv venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt

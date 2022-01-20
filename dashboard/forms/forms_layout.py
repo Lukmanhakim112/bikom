@@ -16,3 +16,14 @@ TEACHER_CREATION_FORM_LAYOUT = Layout(
         Div('is_staff', css_class='col-12'),
     )
 )
+
+APPOINT_FORM_LAYOUT = Layout(
+    Row(
+        Div(Field('approved', css_class='form-control form-control-sm'), css_class='col-12'),
+
+        Div(Field('date', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+        Div(Field('time', css_class='form-control form-control-sm'), css_class='col-12 col-md-6'),
+
+        Div(Field('desc', css_class='form-control form-control-sm'), css_class='col-12'),
+    )
+)

@@ -84,6 +84,7 @@ class CustomUser(AbstractUser):
     )
     photo = models.ImageField(
         _('Photo profile'),
+        upload_to='photo_profile/',
         help_text=_('Please enter your beautiful photo, free to pose, but use decent clothing.')
     )
 

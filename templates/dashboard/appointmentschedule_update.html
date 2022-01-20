@@ -1,0 +1,32 @@
+{% extends 'dashboard/base_dashboard.html' %} 
+
+{% load crispy_forms_tags %}
+
+{% block main-dashboard %}
+<section class="p-3 bg-white rounded">
+
+	<h2 class="title">Jadwal Konseling</h2>
+	<p class="text-muted">
+		Jadwal konseling atas nama <strong>{{ profile.full_name }}</strong>, silahkan lakukan persetujuan data...
+	</p>
+
+	<div class="row my-4">
+		<div class="col-12 col-md">
+			<img class="img-fluid" src="{{ profile.photo.url }}" alt="Photo profile">
+		</div>
+		<div class="col-12 col-md-8 my-3 my-sm-0">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Nama: {{ profile.full_name }}</li>
+				<li class="list-group-item">Username: {{ profile.username }}</li>
+				<li class="list-group-item">Kelas: {{ profile.studentprofile.klass }}</li>
+			</ul>
+		</div>
+		<div class="col-12">
+			{% crispy form %}
+			<button class="btn btn-danger" type="submit" form="appointUpdateForm">Update janji konseling</button>
+			<a class="btn btn-outline-secondary" href="">Batal</a>
+		</div>
+	</div>
+
+</section>
+{% endblock main-dashboard %}

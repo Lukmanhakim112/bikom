@@ -1,0 +1,53 @@
+{% extends 'dashboard/base_dashboard.html' %} 
+
+
+{% block main-dashboard %}
+<section class="p-3 bg-white rounded">
+
+	<h2 class="title">Daftar Jadwal Konseling</h2>
+	<p class="text-muted">
+		Berikut adalah daftar janji yang murid telah input ke website.
+	</p>
+
+	<table class="table">
+	  <thead>
+		<tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Atas nama</th>
+		  <th scope="col">Kelas</th>
+		  {% if user.is_superuser %}
+		  <th scope="col">Guru BK</th>
+		  {% endif %}
+		  <th scope="col">Status</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		{% for a in appointments %}
+			<tr>
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>
+					<a href="{% url 'appoint-update' a.pk a.student.pk %}" class="text-decoration-none link-danger">
+						{{ a.student.full_name }}
+					</a>
+				</td>
+				<td>{{ a.student.studentprofile.klass }}</td>
+		  		{% if user.is_superuser %}
+				<td>{{ a.teacher.username }}</td>
+		  		{% endif %}
+				<td>
+					{% if a.approved %}
+					<span class="badge bg-success">Diterima</span>
+					{% elif a.approved == None %}
+					<span class="badge bg-secondary">Pending</span>
+					{% else %}
+					<span class="badge bg-danger">Ditolak</span>
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+	  </tbody>
+	</table>
+
+
+</section>
+{% endblock main-dashboard %}
