@@ -22,6 +22,7 @@ Make sure python is installed and can be accessed via terminal or cmd or powersh
 ```console
 $ git clone https://github.com/Lukmanhakim112/bikom
 $ cd bikom
+$ mv bikom/.env.example /bikom/.env
 $ python -m venv venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
@@ -34,6 +35,9 @@ $ python manage.py runserver
 ```console
 > git clone https://github.com/Lukmanhakim112/bikom
 > cd bikom
+
+rename .env.example to .env in the folder bikom 
+
 > py -m venv venv
 
 for cmd:
