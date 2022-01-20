@@ -11,6 +11,8 @@ TODO
 - [ ] Teacher can and should approve an appointment
 - [ ] Notification system (idk, it's might be change)
 
+- [ ] write test files
+
 ## Quick Start
 
 Make sure python is installed and can be accessed via terminal or cmd or powershell.

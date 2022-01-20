@@ -1,0 +1,61 @@
+{% extends 'homepage/base.html' %} 
+
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block messages %}{% endblock messages %} 
+{% block navbar %}{% endblock navbar %} 
+
+{% block title %}Dashboard BK{% endblock title %} 
+
+{% block main %}
+
+	{% if messages %}
+	<!-- Messages section -->
+	<section class="bg-white my-3 p-3 rounded shadow-sm">
+		{% for m in messages%}
+		<div class="m-0 border-0 alert alert-{{ m.tags }}" role="alert">
+			{{m}}
+		</div>
+		{% endfor%}
+	</section>
+	{% endif %}
+
+	<div class="my-3 d-flex">
+
+		<!-- Sidebar -->
+		<nav id="sidebar" class="nav me-5 text-start d-none d-sm-flex flex-column">
+			<a class="nav-link active" aria-current="page" href="{% url 'admin-dashboard' %}">Dashboard</a>
+			<a class="nav-link" href="{% url 'create-teacher' %}">Tambah Akun</a>
+			<a class="nav-link" href="#">Buat Akun</a>
+			<a class="nav-link" href="#">Buat Akun</a>
+			<a class="nav-link" href="#">Buat Akun</a>
+			<a class="nav-link" href="#">Buat Akun</a>
+		</nav>
+
+		<div class="w-100">
+			<!-- Navbar content -->
+			<section class="px-3 py-2 mb-2 sticky-top w-100 bg-white rounded">
+				<button class="btn text-danger" id="sidebartoggler">
+					<i class="bi bi-list"></i>
+				</button>
+			</section>
+
+
+			<!-- Main content -->
+			<div>
+				{% block main-dashboard %}
+				<section class="p-3 bg-white rounded">
+					<h2 class="title">Dashboard Bimbingan Konseling</h2>
+				</section>
+				{% endblock main-dashboard %}
+			</div>
+			
+		</div>
+		
+
+	</div>
+
+{% endblock main %}
+{% block js %}
+	<script type="text/javascript" src="{% static 'dashboard/js/navbar-toggler.js' %}"></script>
+{% endblock js %}

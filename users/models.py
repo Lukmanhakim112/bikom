@@ -79,7 +79,8 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(
         _('Phone number'),
         max_length=14,
-        null=True
+        null=True,
+        #  unique=True,
     )
     photo = models.ImageField(
         _('Photo profile'),

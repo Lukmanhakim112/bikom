@@ -1,0 +1,17 @@
+{% extends 'dashboard/base_dashboard.html' %} 
+
+{% load crispy_forms_tags %}
+
+
+{% block main-dashboard %}
+<section class="p-3 bg-white rounded">
+
+	<h2 class="title">Tambah Akun Staff</h2>
+	<p class="text-muted">
+		Silahkan menambahkan akun staff disini, perhatikan data yang diinput, dan buatkan password yang kuat.
+	</p>
+
+	{% crispy form %}
+	<button class="btn btn-danger" type="submit" form="teacherCreationForm">Tambahkan Akun</button>
+</section>
+{% endblock main-dashboard %}
