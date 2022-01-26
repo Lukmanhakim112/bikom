@@ -16,14 +16,12 @@ from students.models import (
 )
 
 from users.models import CustomUser
+from users.decorators import redirect_staff
 
 
 @login_required()
+@redirect_staff
 def student_dashboard(request):
-
-    # TODO: redirect to staff dashboard
-    if request.user.is_staff:
-        pass
 
     try:
         s_profile = StudentProfile.objects.get(account=request.user) 
@@ -51,7 +49,9 @@ def student_dashboard(request):
 
 
 @login_required()
+@redirect_staff
 def student_profile(request):
+
     try:
         profile = StudentProfile.objects.get(account=request.user.pk)
     except ObjectDoesNotExist:
@@ -125,11 +125,8 @@ def student_best_friends(request):
     return redirect('student-dashboard')
 
 @login_required()
+@redirect_staff
 def student_appointment(request):
-
-    # Only accept POST method
-    if request.method != "POST":
-        return redirect('student-dashboard')
 
     form = AppointmentModelForm(request.POST)
 

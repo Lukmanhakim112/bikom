@@ -8,3 +8,22 @@
 .title {
 	font-family: 'Quicksand', sans-serif;
 }
+input:focus {
+	box-shadow: 0 0 0 .15rem #F24949 !important;
+	border-color: #F24949 !important;
+}
+.border-peach {
+	border-color: #F24949 !important;
+}
+.bg-peach-0 {
+	background: #F5C4C5 !important;
+}
+.bg-peach-1 {
+	background: #F24949 !important;
+}
+.bg-light-1 {
+	background: #FAFBFC !important;
+}
+
+
+

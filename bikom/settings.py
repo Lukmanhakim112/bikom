@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'students.apps.StudentsConfig',
     'homepage.apps.HomepageConfig',
     'dashboard.apps.DashboardConfig',
+    'assessments.apps.AssessmentsConfig',
 
     'crispy_forms',
     'crispy_bootstrap5',

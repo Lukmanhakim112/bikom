@@ -23,19 +23,23 @@
 	<div class="my-3 d-flex">
 
 		<!-- Sidebar -->
-		<nav id="sidebar" class="nav me-5 text-start d-none d-sm-flex flex-column">
+		<nav id="sidebar" class="nav me-4 text-start d-none d-sm-flex flex-column">
+			<div class="w-100 px-3 py-3 title text-center bg-peach-0 rounded rounded">
+				Bikom
+			</div>
 			<a class="nav-link active" aria-current="page" href="{% url 'admin-dashboard' %}">Dashboard</a>
 			<a class="nav-link" href="{% url 'users-list' %}">Akun</a>
-			<a class="nav-link" href="#">Assesment</a>
+			<a class="nav-link" href="{% url 'assessments-list' %}">Assesment</a>
 			<a class="nav-link" href="{% url 'appoint-list' %}">Konseling</a>
 		</nav>
 
 		<div class="w-100">
 			<!-- Navbar content -->
-			<section class="px-3 py-2 mb-2 sticky-top w-100 bg-white rounded">
+			<section class="hstack gap-3 align-items-baseline px-3 py-2 mb-2 sticky-top w-100 bg-white rounded">
 				<button class="btn text-danger" id="sidebartoggler">
 					<i class="bi bi-list"></i>
 				</button>
+				<div class="vr"></div>
 				{% block navbar-dashboard %}
 				{% endblock navbar-dashboard %}
 			</section>

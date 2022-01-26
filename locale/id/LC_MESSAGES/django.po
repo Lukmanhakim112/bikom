@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-17 09:20+0700\n"
+"POT-Creation-Date: 2022-01-21 14:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\students\models.py:5
+#: .\assessments\models.py:7
+msgid "Assesment Name"
+msgstr "Nama Assesment"
+
+#: .\assessments\models.py:20
+msgid "Question"
+msgstr "Pertanyaan"
+
+#: .\assessments\models.py:24 .\assessments\models.py:43
+msgid "Question Image"
+msgstr "Gambar Pertanyaan"
+
+#: .\assessments\models.py:39
+msgid "Answer"
+msgstr "Jawaban"
+
+#: .\students\models.py:7 .\students\models.py:72 .\students\models.py:80
 msgid "Full Name"
 msgstr "Nama Lengkap"
 
-#: .\students\models.py:9
+#: .\students\models.py:12
 msgid "Phone Number"
 msgstr "Nomor HP"
 
-#: .\students\models.py:17
+#: .\students\models.py:30
+msgid "Approval"
+msgstr "Persetujuan"
+
+#: .\students\models.py:34
+msgid "Appointment date"
+msgstr "Tanggal janti"
+
+#: .\students\models.py:35
+msgid "Enter what date for when you want meet the teacher."
+msgstr "Masukan tanggal berapa Anda ingin ketemu dengan guru BK."
+
+#: .\students\models.py:38
+msgid "Appointment time at"
+msgstr "Janji Pukul"
+
+#: .\students\models.py:39
+msgid "Enter what time for when you want meet the teacher."
+msgstr "Masukan pukul berapa anda ingin ketemu dengan guru BK."
+
+#: .\students\models.py:42
+msgid "Description"
+msgstr "Deskripsi"
+
+#: .\students\models.py:43
+msgid "Describe why you make an appointment."
+msgstr "Deskripsikan kenapa Anda membuat janji."
+
+#: .\students\models.py:53
 msgid "Instagram Account"
 msgstr "Akun Instagram"
 
-#: .\students\models.py:18
+#: .\students\models.py:54
 msgid "Enter your instagram username with the @, i.e: @ziyk123."
 msgstr "Masukan username instagram kamu beserta dengan '@', contoh: @ziyk123."
 
-#: .\students\models.py:21
+#: .\students\models.py:57
 msgid "Chield Number"
 msgstr "Anak Ke-"
 
-#: .\students\models.py:24
+#: .\students\models.py:60
 msgid "Number of sibling(s)."
 msgstr "Dari berapa saudara"
 
-#: .\students\models.py:28
+#: .\students\models.py:64
 msgid "Class"
 msgstr "Kelas"
 
-#: .\students\models.py:29
+#: .\students\models.py:65
 msgid "Enter your class name, i.e: XII TJAT-2. MUST write as example."
 msgstr "Masukan nama kelas, contoh: XII TJAT-2. HARUS sesuai dengan contoh."
 
-#: .\students\models.py:31
-msgid "Best Friends"
-msgstr "Teman Dekat"
-
-#: .\students\models.py:39
+#: .\students\models.py:73 .\students\models.py:81
 msgid "Jobs"
 msgstr "Pekerjaan"
 
@@ -86,14 +126,16 @@ msgstr "Nama lengkap"
 msgid "Phone number"
 msgstr "Nomor HP"
 
-#: .\users\models.py:85
+#: .\users\models.py:86
 msgid "Photo profile"
 msgstr "Photo profile"
 
-#: .\users\models.py:86
+#: .\users\models.py:88
 msgid ""
 "Please enter your beautiful photo, free to pose, but use decent clothing."
-msgstr "Mohon unggah photo cantik mu, boleh bergaya bebas, tapi menggunakan pakaian sopan."
+msgstr ""
+"Mohon unggah photo cantik mu, boleh bergaya bebas, tapi menggunakan pakaian "
+"sopan."
 
 #: .\venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:129
 #: .\venv\Lib\site-packages\crispy_forms\tests\test_form_helper.py:139
@@ -736,39 +778,39 @@ msgid "No"
 msgstr ""
 
 #. Translators: Please do not add spaces around commas.
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:805
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:817
 msgid "yes,no,maybe"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:834
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:851
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:846
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:863
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:853
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:865
 #, python-format
 msgid "%s KB"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:855
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:867
 #, python-format
 msgid "%s MB"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:857
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:869
 #, python-format
 msgid "%s GB"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:859
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:871
 #, python-format
 msgid "%s TB"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:861
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:873
 #, python-format
 msgid "%s PB"
 msgstr ""
@@ -1297,3 +1339,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Best Friends"
+#~ msgstr "Teman Dekat"

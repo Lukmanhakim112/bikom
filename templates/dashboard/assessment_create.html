@@ -1,0 +1,57 @@
+{% extends 'dashboard/base_dashboard.html' %} 
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+	Dashboard BK | Tambah Soal
+{% endblock title %}
+
+{% block navbar-dashboard %}
+	<span class="h5 title">{{ asment.name }}</span>
+{% endblock navbar-dashboard %}
+
+{% block main-dashboard %}
+<section class="p-4 bg-white rounded border-start border-5 border-peach">
+
+
+	<div class="">
+		<form action="" method="POST" enctype="multipart/form-data" id="questionform">
+			{% crispy q_form %}
+			<div class="card my-3">
+				<div class="card-header text-muted">
+					<h5 class="card-title m-0 title">Jawaban</h5>
+				</div>
+				<div class="card-body m-2">
+					{% crispy a_form form_helper %}
+				</div>
+			</div>
+
+			<div class="d-flex align-items-baseline justify-content-end">
+				<button id="dec-answer" type="button" class="btn text-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Kurangi jawaban">
+					<i class="bi bi-dash" style="font-size: 1.7rem;"></i>
+				</button>
+				<button id="inc-answer" type="button" class="btn text-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah jawaban">
+					<i class="bi bi-plus" style="font-size: 1.7rem;"></i>
+				</button>
+				<div class="vr"></div>
+				<button type="reset" class="btn text-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset angket">
+					<i class="bi bi-trash" style="font-size: 1.7rem;"></i>
+				</button>
+				<button type="submit" class="btn btn-primary" form="questionform">Simpan pertanyaan</button>
+			</div>
+		</form>
+	</div>
+
+
+</section>
+{% endblock main-dashboard %}
+{% block js %}
+{{ block.super }}
+<script src="{% static 'dashboard/js/control-answer-fields.js' %}"></script>
+<script>
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	  return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
+</script>
+{% endblock js %}
