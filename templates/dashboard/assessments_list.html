@@ -10,7 +10,7 @@
 {% endblock navbar-dashboard %}
 
 {% block main-dashboard %}
-<section class="p-3 bg-white rounded">
+<section class="p-3 bg-white rounded border-start border-5 border-peach">
 
 	<div class="p-3 bg-light-1 rounded">
 		<h2 class="title">Daftar Assesment</h2>
@@ -38,7 +38,7 @@
 							</span>
 						</p>
 						<hr>
-						<a href="#" class="btn btn-primary">Detail</a>
+						<a href="{% url 'assessments-detail' asment.pk %}" class="btn btn-primary">Detail</a>
 					</div>
 				</div>
 			</div>

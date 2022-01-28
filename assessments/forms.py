@@ -47,6 +47,11 @@ class AnswerForm(forms.Form):
     answer = forms.CharField(max_length=120)
     answer_img = forms.ImageField(help_text=_("Image for answer."), required=False)
 
+class UpdateAnswerForm(forms.Form):
+    pk = forms.CharField(max_length=120, widget=forms.HiddenInput)
+    answer = forms.CharField(max_length=120)
+    answer_img = forms.ImageField(help_text=_("Image for answer."), required=False)
+
 class AnswerFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -64,5 +69,6 @@ class AnswerFormHelper(FormHelper):
         )
 
 AnswerFormset = forms.formset_factory(AnswerForm, extra=4)
+UpdateAnswerFormset = forms.formset_factory(UpdateAnswerForm, extra=0) 
 
 
